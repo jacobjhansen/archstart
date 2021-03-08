@@ -1,3 +1,5 @@
 .DS_Store
 __pycache__
-/vscode
+.vscode
+.pyc
+/archstart.egg-info
