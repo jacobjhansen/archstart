@@ -48,7 +48,7 @@ def get_desired_architecture():
         subroutine_num = int(get_input('How Many Subroutines?',[]))
         return_dict['subroutine_num'] = subroutine_num
     elif int(program_architecture) == 1:
-        # PUBLISHEDR/SUBSCRIBER
+        # PUBLISHER/SUBSCRIBER
         return_dict['architecture'] = 'pub/sub'
 
         subscriber_num = int(get_input('How Many Subscribers?',[]))
