@@ -1,4 +1,7 @@
-import os,sys
+import os,sys,re
+from FileCreation import FileCreation
+from FileCreation import main_subroutine_main,main_subroutine_sub
+from FileCreation import pub_sub_pub,pub_sub_sub,pub_sub_topic,pub_sub_driver
 
 # Global Variables
 version = '0.1'
@@ -36,6 +39,10 @@ def get_input(question,choices):
 
 def get_desired_architecture():
     program_name = get_input('What\'s your program\'s name?',[])
+
+    if not program_name.endswith('.py'):
+        program_name = program_name + '.py'
+
     return_dict = {'program_name':program_name}
 
     program_architecture = get_input('What architecture would you like to use?',['Main/Subroutine','Publisher/Subscriber','Client/Server'])
@@ -73,9 +80,56 @@ def get_desired_architecture():
 
     return return_dict
 
-test = get_desired_architecture()
-print(test)
+def generate_main_sub(arch_dict):
+    current = FileCreation(arch_dict['program_name'])
+
+    for i in range(1,arch_dict['subroutine_num']+1):
+        subroutine_name = 'subroutine' + str(i)
+        current.addSection(main_subroutine_sub,[subroutine_name])
+
+    current.addSection(main_subroutine_main,["subroutine1"])
+
+def generate_pub_sub(arch_dict):
+    current = FileCreation(arch_dict['program_name'])
+
+    current.addSection(pub_sub_pub,[])
+    current.addSection(pub_sub_sub,[])
+    current.addSection(pub_sub_topic,[])
+    current.addSection('\n',[])
+
+    for i in range(1,arch_dict['publisher_num']+1):
+        publisher_name = 'publisher' + str(i)
+        current.addSection('PUB = Publisher()\n',[publisher_name])
+
+    for i in range(1,arch_dict['subscriber_num']+1):
+        subscriber_name = 'subscriber' + str(i)
+        current.addSection('SUB = Subscriber()\n',[subscriber_name])
+
+    for i in range(1,arch_dict['topic_num']+1):
+        topic_name = 'topic' + str(i)
+        current.addSection('TOPIC = Topic()\n',[topic_name])
+
+    current.addSection(pub_sub_driver,['publisher1','topic1','topic1','subscriber1','publisher1'])
+
+
+def generate_client_server(arch_dict):
+    pass
+
+def main():
+    arch_dict = get_desired_architecture()
+    print(arch_dict)
+
+    assert arch_dict['architecture'] == 'main/sub' or arch_dict['architecture'] == 'pub/sub' or arch_dict['architecture'] == 'client/server'
+
+    if arch_dict['architecture'] == 'main/sub':
+        generate_main_sub(arch_dict)
+    elif arch_dict['architecture'] == 'pub/sub':
+        generate_pub_sub(arch_dict)
+    elif arch_dict['architecture'] == 'client/server':
+        generate_client_server(arch_dict)
 
 
 
 
+if __name__ == "__main__":
+    main()
