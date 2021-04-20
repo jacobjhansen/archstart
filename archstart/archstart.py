@@ -2,6 +2,7 @@ import os,sys,re
 from FileCreation import FileCreation
 from FileCreation import main_subroutine_main,main_subroutine_sub
 from FileCreation import pub_sub_pub,pub_sub_sub,pub_sub_topic,pub_sub_driver
+from FileCreation import client_server_client,client_server_server
 
 # Global Variables
 version = '0.1'
@@ -70,11 +71,11 @@ def get_desired_architecture():
         # CLIENT/SERVER
         return_dict['architecture'] = 'client/server'
         
-        client = int(get_input('How Many Clients?',[]))
-        return_dict['client_num'] = client
+        #client = int(get_input('How Many Clients?',[]))
+        #return_dict['client_num'] = client
 
-        server_num = int(get_input('How Many Servers?',[]))
-        return_dict['server_num'] = server_num
+        #server_num = int(get_input('How Many Servers?',[]))
+        #return_dict['server_num'] = server_num
     else:
         raise Exception("Desired Architecture not Valid.")
 
@@ -113,7 +114,16 @@ def generate_pub_sub(arch_dict):
 
 
 def generate_client_server(arch_dict):
-    pass
+    filename = arch_dict['program_name'].split('.')[0]
+    server_filename = filename + '_server.py'
+    client_filename = filename + '_client.py'
+
+    server_file = FileCreation(server_filename)
+    client_file = FileCreation(client_filename)
+
+    server_file.addSection(client_server_server,[])
+    client_file.addSection(client_server_client,[])
+
 
 def main():
     arch_dict = get_desired_architecture()
