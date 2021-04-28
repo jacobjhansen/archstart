@@ -2,21 +2,25 @@
 Architecture Helper for Python
 
 ## Install
-It can be installed from command-line using [pip](https://pypi.python.org/pypi/pip):
+It can be downloaded from GitHub using the following command:
 ```bash
-pip install archstart
+git clone https://github.com/jacobjhansen/archstart.git
 ```
 
 ## Usage
-Usage examples.
+This script is run using the following command:
+```bash
+python3 [path to archstart/archstart]/archstart.py
+```
 
 ## Authors
-* {AUTHOR}
+* Jacob Hansen
+* Jon Trost
+* Jack Rowen
+* Sarah Kornbluh
 
 ## Acknowledgements
-- Acknowledgement 0
-- Acknowledgement 1
-- Acknowledgement 2
+- Dr. Bagheri, University of Nebraska-Lincoln
 
 ## License
 This project is licensed under the MIT license.
