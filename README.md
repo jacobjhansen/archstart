@@ -9,9 +9,13 @@ git clone https://github.com/jacobjhansen/archstart.git
 > Please Note that a valid Python3 Installation is required for the archstart CLI. More info can be found [here](https://www.python.org/downloads/)
 
 ## Usage
-This script is run using the following command:
+This script is run on *NIX systems (recommended) using the following command:
 ```bash
 python3 [path to archstart/archstart]/archstart.py
+```
+This script is run on Windows systems using the following command:
+```bash
+py -3 [path to archstart/archstart]/archstart.py 
 ```
 
 ## Authors

@@ -16,16 +16,7 @@ heading = """    _     ____    ____  _   _  ____   _____     _     ____   _____
 """
 
 def get_input(question,choices):
-    rows, columns = os.popen('stty size', 'r').read().split()
-    columns = int(columns)
-    rows = int(rows)
-    splitstring = "-" * columns
-
-    os.system('clear')
-    if columns > 70:
-        print(heading)
-    else:
-        print('ARCHSTART')
+    print(heading)
     print("Version:",version)
     print("Last Updated:",updated_date)
     print("\n\n")
